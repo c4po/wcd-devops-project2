@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: helloweb-blue
+  labels:
+    app: hello
+spec:
+  selector:
+    matchLabels:
+      app: hello
+      pop: blue
+  replicas: 5
+  template:
+    metadata:
+      labels:
+        app: hello
+        pop: blue
+    spec:
+      containers:
+      - name: hello-app
+        image: us-docker.pkg.dev/google-samples/containers/gke/hello-app:1.0
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            cpu: 400m
+
